@@ -34,39 +34,6 @@ A simple MicroPython project that uses an HC-SR04 ultrasonic sensor to measure d
 - Calculates the distance in centimeters
 - If distance < 100 cm → turns on the LED
 - Else → LED is off
-
----
-
-## 🧠 Code Overview
-
-```python
-from machine import Pin, time_pulse_us
-from time import sleep
-
-TRIG = Pin(3, Pin.OUT)
-ECHO = Pin(2, Pin.IN)
-LED = Pin(2, Pin.OUT)
-
-def read_distance_cm():
-    TRIG.value(0)
-    sleep(0.000002)
-    TRIG.value(1)
-    sleep(0.00001)
-    TRIG.value(0)
-    try:
-        duration = time_pulse_us(ECHO, 1, 30000)
-        return (duration * 0.0343) / 2
-    except OSError:
-        return -1
-
-while True:
-    distance = read_distance_cm()
-    if 0 < distance < 100:
-        LED.on()
-    else:
-        LED.off()
-    print("Measured distance:", distance, "cm")
-    sleep(0.1)
 🚀 Getting Started
 Flash MicroPython to your board.
 
@@ -76,5 +43,11 @@ Open the serial monitor.
 
 Move an object closer or farther to see the LED behavior and distance readout.
 
-📦 License
-This project is open-source and free to use under the MIT License.
+
+👤 Author
+🔗 GitHub: @taherZAR
+💡 Project: parking-sensor
+
+
+📜 License
+This project is open-source and available under the MIT License.
